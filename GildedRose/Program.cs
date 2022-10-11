@@ -62,19 +62,23 @@ namespace GildedRose
         public void AgedBrieItem(Item item) {
             if (item.Quality < 50)
             {
-                if(item.SellIn > 0) item.Quality =+ 1;
-                if(item.SellIn <= 0) item.Quality =+ 2;
+                if (item.SellIn > 0) item.Quality += 1;
+                if (item.SellIn <= 0) item.Quality += 2;
             }
         }
         
 
         public void ConjuredItem(Item item)
         {  
-            if(item.Quality < 50) {
-
-                if (item.Quality > 0)
+            if(item.Quality < 50 && item.Quality > 0)
+            {
+                if(item.SellIn > 0)
                 {
-                    item.Quality = item.Quality - 2;
+                    item.Quality -= 2;
+                } 
+                else
+                {
+                    item.Quality = 0;
                 }
             }
             
@@ -84,16 +88,16 @@ namespace GildedRose
         {
             if (item.Quality < 50)
             {
-                item.Quality =+ 1;
+                item.Quality += 1;
                 if (item.SellIn < 11)
                 {
-                    item.Quality =+ 1;
+                    item.Quality += 1;
                 }
                 if (item.SellIn < 6)
                 {
-                    item.Quality =+ 1;
+                    item.Quality += 1;
                 }
-                if (item.SellIn < 0)
+                if (item.SellIn <= 0)
                 {
                     item.Quality = 0;
                 }
@@ -101,24 +105,23 @@ namespace GildedRose
         }
         
         public void DefaultItem(Item item) {
-            if(item.Quality < 50) {
+            if(item.Quality < 50) 
+            {
                 if (item.SellIn < 0 && item.Quality > 0)
                 {
-                    item.Quality =- 2;
+                    item.Quality -= 2;
                 }
-                    else if (item.Quality > 0)
+                else if (item.Quality > 0)
                 {
-                    item.Quality =- 1;
+                    item.Quality -= 1;
                 }
             }
         }
-
 
         public void UpdateQuality()
         {
             foreach (Item item in Items)
             {
-                var itemString = item.Name;
                 switch(item.Name)
                 {
                     case "Sulfuras, Hand of Ragnaros":
@@ -129,11 +132,12 @@ namespace GildedRose
                         AgedBrieItem(item);
                         break;
                     
-                    case string backstage when item.Name.Contains("Backstage passes"):
+                    case var backstage when item.Name.Contains("Backstage") && item.Name.Contains("passes"):
                         BackstagePassesItem(item);
+
                         break;
                     
-                    case string conjured when item.Name.Contains("Conjured"):
+                    case var conjured when item.Name.Contains("Conjured"):
                         ConjuredItem(item);
                         break;
                 
@@ -142,8 +146,11 @@ namespace GildedRose
                         break;
                 } 
             }
+        }
+    }
+}
 
-        //     {for (var i = 0; i < Items.Count; i++)
+//     {for (var i = 0; i < Items.Count; i++)
         //     {
         //         if (Items[i].Name != "Aged Brie" && Items[i].Name != "Backstage passes to a TAFKAL80ETC concert")
         //         {
@@ -216,7 +223,3 @@ namespace GildedRose
         //         }
         //     }
         // }}
-
-    }
- }
-}
