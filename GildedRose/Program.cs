@@ -144,4 +144,9 @@ namespace GildedRose
         public int Quality { get; set; }
     }
 
+    public class Type 
+    {
+        
+    }
+
 }

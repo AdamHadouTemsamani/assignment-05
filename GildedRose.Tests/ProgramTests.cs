@@ -72,6 +72,45 @@ public class ProgramTests
     }
 
 
+    [Fact]
+    public void Legendary_Items_Quality_Should_Never_Change()
+    {
+        //Arrange
+        program.Items = new List<Item>
+        {
+             new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80 }
+        };
+        var answer = 80;
+
+        //Act
+        program.UpdateQuality();
+
+        //Assert
+        program.Items[0].Quality.Should().Be(answer);
+    }
+
+    [Fact]
+    public void Backstage_Pass_Quality_Changes_Correctly()
+    {
+        //Arrange
+        program.Items = new List<Item>
+        {
+            new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 10, Quality = 10},
+            new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 5, Quality = 10},
+            new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 10}
+        };
+
+        //Act
+        program.UpdateQuality();
+
+
+        //Assert
+        program.Items[0].Quality.Should().Be(12);
+        program.Items[1].Quality.Should().Be(13);
+        program.Items[2].Quality.Should().Be(0);
+    }
+
+
 
 
 
