@@ -16,9 +16,9 @@ public class ProgramTests
         //Arrange
         program.Items = new List<Item>
         {
-            new Item { Name = "Aged Brie", SellIn = 0, Quality = 10 },
-            new Item { Name = "Aged Brie", SellIn = 0, Quality = 50 },
-            new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 10 },
+            new CheeseItem { Name = "Aged Brie", SellIn = 0, Quality = 10 },
+            new CheeseItem { Name = "Aged Brie", SellIn = 0, Quality = 50 },
+            new TicketItem { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 10 },
         };
 
         //Act
@@ -39,9 +39,9 @@ public class ProgramTests
         //Arrange
         program.Items = new List<Item>
         {
-            new Item { Name = "Aged Brie", SellIn = 0, Quality = 0 },
-            new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 0 },
-            new Item { Name = "Elixir of the Mongoose", SellIn = 0, Quality = 0 },
+            new CheeseItem { Name = "Aged Brie", SellIn = 0, Quality = 0 },
+            new TicketItem { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 0 },
+            new DefaultItem { Name = "Elixir of the Mongoose", SellIn = 0, Quality = 0 },
         };
 
         //Act
@@ -58,10 +58,10 @@ public class ProgramTests
         //Arrange
         program.Items = new List<Item>
         {
-            new Item { Name = "Aged Brie", SellIn = 0, Quality = 10 },
-            new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 20 },
-            new Item { Name = "Elixir of the Mongoose", SellIn = 0, Quality = 50 },
-            new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80 },
+            new CheeseItem { Name = "Aged Brie", SellIn = 0, Quality = 10 },
+            new TicketItem { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 20 },
+            new DefaultItem { Name = "Elixir of the Mongoose", SellIn = 0, Quality = 50 },
+            new LegendaryItem { Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80 },
         };
 
         //Act
@@ -78,7 +78,7 @@ public class ProgramTests
         //Arrange
         program.Items = new List<Item>
         {
-             new Item { Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80 }
+             new LegendaryItem { Name = "Sulfuras, Hand of Ragnaros", SellIn = 0, Quality = 80 }
         };
         var answer = 80;
 
@@ -95,10 +95,10 @@ public class ProgramTests
         //Arrange
         program.Items = new List<Item>
         {
-            new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 15, Quality = 10 },
-            new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 10, Quality = 10},
-            new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 5, Quality = 10},
-            new Item { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 10}
+            new TicketItem { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 15, Quality = 10 },
+            new TicketItem { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 10, Quality = 10},
+            new TicketItem { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 5, Quality = 10},
+            new TicketItem { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 10}
         };
 
         //Act
@@ -118,8 +118,8 @@ public class ProgramTests
         //Arrange
         program.Items = new List<Item>
         {
-            new Item { Name = "Aged Brie", SellIn = 10, Quality = 10},
-            new Item { Name = "Aged Brie", SellIn = 0, Quality = 10},
+            new CheeseItem { Name = "Aged Brie", SellIn = 10, Quality = 10},
+            new CheeseItem { Name = "Aged Brie", SellIn = 0, Quality = 10},
         };
 
         //Act
@@ -136,8 +136,8 @@ public class ProgramTests
         //Arrange
         program.Items = new List<Item>
         {
-            new Item { Name = "Conjured Mana Food", SellIn = 10, Quality = 10},
-            new Item { Name = "Mana Food that has been Conjured",  SellIn = 10, Quality = 10}
+            new ConjuredItem { Name = "Conjured Mana Food", SellIn = 10, Quality = 10},
+            new ConjuredItem { Name = "Mana Food that has been Conjured",  SellIn = 10, Quality = 10}
         };
 
         //Act
@@ -147,11 +147,5 @@ public class ProgramTests
         program.Items[0].Quality.Should().Be(8);
         program.Items[1].Quality.Should().Be(8);
     }
-
-
-    
-
-
-
 }
 
