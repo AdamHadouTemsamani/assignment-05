@@ -1,8 +1,10 @@
 # Assignment #5
 
-## Our Explanation to the Goblin
+## Our Explanation to the Goblin & Test Coverage
 
-We decided to touch the Item class, by making it abstract with the abstract method UpdateQuality().  We decided to do so since in the original code, every time you had to make a new type of item. You had to modify the already existing code, which is not preferable. So to prevent that we decided to go with making Item abstract. We also decided to implement each type of Item as its own class, that overrides the UpdateQuality() method from the Item class. Now we have sperated the responsibilities of each type of item class, and in caseof adding a new type, you would only need to add new code. 
+We decided to make the Item class abstract with the abstract method UpdateQuality(). We decided to do so since in the original code, every time you had to make a new type of item. You had to modify the already existing code, which is not preferable So to prevent that we decided to go with making Item abstract and decided to have each type of Item be its own class. They implement the abstract the Item class, and override the UpdateQuality() with their own functionality. Now we have sperated the responsibilities of each type of item class, and in case of adding a new type, you would only need to add new code.
+
+- In case of checking our Test Coverage. By commenting out our main method it shows our actual Test Coverage. 
 
 ## C♯: Gilded Rose Refactoring Kata
 

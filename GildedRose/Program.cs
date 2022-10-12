@@ -9,7 +9,7 @@ namespace GildedRose
 
         static void Main(string[] args)
         {
-            /*
+            
             System.Console.WriteLine("OMGHAI!");
             var app = new Program()
             {
@@ -36,7 +36,7 @@ namespace GildedRose
                 Console.WriteLine("");
                 app.UpdateQuality();
             }
-            */
+            
             
         }
 
