@@ -18,5 +18,6 @@ public class TicketItem : Item
                 Quality = 0;
             }
         }
+        SellIn--;
     }
 }

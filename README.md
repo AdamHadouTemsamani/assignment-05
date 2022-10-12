@@ -1,5 +1,9 @@
 # Assignment #5
 
+## Our Explanation to the Goblin
+
+We decided to touch the Item class, by making it abstract with the abstract method UpdateQuality().  We decided to do so since in the original code, every time you had to make a new type of item. You had to modify the already existing code, which is not preferable. So to prevent that we decided to go with making Item abstract. We also decided to implement each type of Item as its own class, that overrides the UpdateQuality() method from the Item class. Now we have sperated the responsibilities of each type of item class, and in caseof adding a new type, you would only need to add new code. 
+
 ## C♯: Gilded Rose Refactoring Kata
 
 Hi and welcome to team Gilded Rose. As you know, we are a small inn with a

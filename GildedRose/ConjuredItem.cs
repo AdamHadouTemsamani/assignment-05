@@ -13,5 +13,6 @@ public class ConjuredItem : Item
                 Quality -= 4;
             }
         }
+        SellIn--;
     }
 }

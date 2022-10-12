@@ -13,5 +13,6 @@ public class DefaultItem : Item
                 Quality -= 1;
             }
         }
+        SellIn--;
     }
 }

@@ -9,6 +9,13 @@ public class ProgramTests
         program = new Program();
     }
 
+    public void FastFoward(int numberOfDays)
+    {
+        for(int i = 0; i < numberOfDays; i++)
+        {
+            program.UpdateQuality();
+        }
+    }
 
     [Fact]
     public void Once_Sell_Date_Passes_Quality_Changes_Correctly()
@@ -22,7 +29,7 @@ public class ProgramTests
         };
 
         //Act
-        program.UpdateQuality();
+        FastFoward(1);
 
         //Assert
         program.Items[0].Quality.Should().Be(12);
@@ -45,7 +52,7 @@ public class ProgramTests
         };
 
         //Act
-        program.UpdateQuality();
+        FastFoward(1);
 
         //Assert
         program.Items.Should().NotContain(i => i.Quality < 0);
@@ -65,7 +72,7 @@ public class ProgramTests
         };
 
         //Act
-        program.UpdateQuality();
+        FastFoward(1);
 
         //Assert 
         program.Items.Should().NotContain(i => i.Quality > 50 && i.Name != "Sulfuras, Hand of Ragnaros");
@@ -83,7 +90,7 @@ public class ProgramTests
         var answer = 80;
 
         //Act
-        program.UpdateQuality();
+        FastFoward(1);
 
         //Assert
         program.Items[0].Quality.Should().Be(answer);
@@ -102,7 +109,7 @@ public class ProgramTests
         };
 
         //Act
-        program.UpdateQuality();
+        FastFoward(1);
 
 
         //Assert
@@ -123,7 +130,7 @@ public class ProgramTests
         };
 
         //Act
-        program.UpdateQuality();
+        FastFoward(1);
 
         //Assert
         program.Items[0].Quality.Should().Be(11);
@@ -141,11 +148,66 @@ public class ProgramTests
         };
 
         //Act
-        program.UpdateQuality();
+        FastFoward(1);
         
         //Assert
         program.Items[0].Quality.Should().Be(8);
         program.Items[1].Quality.Should().Be(8);
     }
+
+    [Fact]
+    public void DefaultItem_Quality_Returns_7_After_12_Days()
+    {
+        //Arrange
+        program.Items = new List<Item>
+        {
+            new DefaultItem { Name = "Totally Ordinary Item", SellIn = 10, Quality = 20}
+        };
+
+        //Act
+        FastFoward(12);
+
+        //Assert
+        program.Items[0].Quality.Should().Be(7);
+    }
+
+
+    [Fact]
+    public void When_Conjured_Hits_Zero_It_Updates_Quality_Correctly()
+    {
+        //Arrange 
+        program.Items = new List<Item>
+        {
+            new ConjuredItem { Name = "Conjured +10 Potion", SellIn = 10, Quality = 10}
+        };
+
+        //Act
+        FastFoward(12);
+
+        //Assert
+        program.Items[0].Quality.Should().Be(0);
+        program.Items[0].SellIn.Should().Be(-2);
+    }
+
+    [Fact]
+    public void When_AgedBrie_Hits_Fifty_It_Updates_Quality_Correctly()
+    {
+        //Arrange 
+        program.Items = new List<Item>
+        {
+            new CheeseItem { Name = "Nasty Looking Cheese", SellIn = 5, Quality = 40}
+        };
+
+        //Act
+        FastFoward(12);
+
+        //Assert
+        program.Items[0].Quality.Should().Be(50);
+        program.Items[0].SellIn.Should().Be(-7);
+        
+    }
+
 }
+
+
 
