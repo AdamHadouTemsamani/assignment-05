@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 
 namespace GildedRose
-{
+{   
+    /* Our explanation to the Goblin can be found in our README file */
     public class Program
     {
         public IList<Item> Items;
